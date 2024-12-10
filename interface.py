@@ -29,10 +29,11 @@ class Ui_MainWindow(object):
         self.textEdit.setGeometry(QtCore.QRect(160, 40, 400, 400))
         self.textEdit.setObjectName("textEdit")
 
-        self.label = QtWidgets.QLabel(parent=self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(270, 10, 200, 30))
-        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label.setObjectName("label")
+        self.textLabel = QtWidgets.QLabel(parent=self.centralwidget)
+        self.textLabel.setGeometry(QtCore.QRect(270, 10, 200, 30))
+        self.textLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.textLabel.setText("Python Teaching App")
+        self.textLabel.setObjectName("textLabel")
 
         self.treeView = QtWidgets.QTreeView(parent=self.centralwidget)
         self.treeView.setGeometry(QtCore.QRect(20, 40, 131, 401))
@@ -86,7 +87,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "TextLabel"))
+        self.textLabel.setText(_translate("MainWindow", "TextLabel"))
         self.nextButton.setText(_translate("MainWindow", "Next"))
         self.backButton.setText(_translate("MainWindow", "Back"))
         self.startLesson.setText(_translate("MainWindow", "Start Lesson"))
