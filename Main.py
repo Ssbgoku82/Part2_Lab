@@ -1,6 +1,7 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from interface import *
+from teaching import *
 
 def main():
     app = QApplication(sys.argv)
@@ -11,8 +12,6 @@ def main():
     MainWindow.show()
 
     sys.exit(app.exec())
-
-
 
 if __name__ == '__main__':
     main()

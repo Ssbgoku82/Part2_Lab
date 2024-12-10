@@ -1,6 +1,6 @@
 from collections.abc import ItemsView
-
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
+
 
 class PythonApp:
     def __init__(self,main_ui):
@@ -20,6 +20,14 @@ class PythonApp:
         self.main_ui.treeView.setModel(model)
         model.appendRow()
 
-    def display_lesson(self, index) ->:
+    def display_lesson(self, index) -> None:
+        if 0 <= index < len(self.lessons):
+            self.main_ui.textEdit.setPlainText(self.lessons[index])
+            self.current_lesson = index
+
+
+
+
+
 
 
