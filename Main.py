@@ -1,5 +1,17 @@
-#I think I finally understand how to send my files to GitHub.
-'''Had to download software to use tk on pycharm. Is there away
-to save the installs?'''
+from gui import *
 
-import tkinter as *
+def main():
+    window = Tk()
+    window.title('Learning Python')
+    window.geometry('600x400')
+    window.resizable(True, True)
+
+    Gui(window)
+    window.mainloop()
+
+if __name__ == '__main__':
+    main()
+
+
+
+
