@@ -20,40 +20,62 @@ class Ui_MainWindow(object):
         self.RunCode.setAutoFillBackground(True)
         self.RunCode.setText("")
         icon = QtGui.QIcon.fromTheme("PlayButton")
+
         self.RunCode.setIcon(icon)
         self.RunCode.setIconSize(QtCore.QSize(40, 50))
         self.RunCode.setObjectName("RunCode")
+
         self.textEdit = QtWidgets.QTextEdit(parent=self.centralwidget)
         self.textEdit.setGeometry(QtCore.QRect(160, 40, 400, 400))
         self.textEdit.setObjectName("textEdit")
+
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
         self.label.setGeometry(QtCore.QRect(270, 10, 200, 30))
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.setObjectName("label")
+
         self.treeView = QtWidgets.QTreeView(parent=self.centralwidget)
         self.treeView.setGeometry(QtCore.QRect(20, 40, 131, 401))
         self.treeView.setObjectName("treeView")
+
+        self.problemButton = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.problemButton.setGeometry(QtCore.QRect(10, 600, 100, 30))
+        self.problemButton.setText("Problem Mode")
+        self.problemButton.setObjectName("problemButton")
+
+        self.checkButton = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.checkButton.setGeometry(QtCore.QRect(120, 600, 100, 30))
+        self.checkButton.setText("Check Solution")
+        self.checkButton.setObjectName("checkButton")
+
+
         self.nextButton = QtWidgets.QPushButton(parent=self.centralwidget)
         self.nextButton.setGeometry(QtCore.QRect(660, 550, 75, 23))
         self.nextButton.setObjectName("nextButton")
+
         self.backButton = QtWidgets.QPushButton(parent=self.centralwidget)
         self.backButton.setGeometry(QtCore.QRect(10, 550, 75, 23))
         self.backButton.setObjectName("backButton")
+
         self.startLesson = QtWidgets.QPushButton(parent=self.centralwidget)
         self.startLesson.setGeometry(QtCore.QRect(340, 550, 75, 23))
         self.startLesson.setObjectName("startLesson")
+
         self.progressBar = QtWidgets.QProgressBar(parent=self.centralwidget)
         self.progressBar.setGeometry(QtCore.QRect(480, 440, 118, 23))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
+
         self.textBrowser = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.textBrowser.setGeometry(QtCore.QRect(570, 40, 141, 401))
         self.textBrowser.setObjectName("textBrowser")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 750, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
+
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
