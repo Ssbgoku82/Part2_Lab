@@ -8,7 +8,7 @@ def main():
     MainWindow = QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
-    MainWindow.setWindowTitle("Python Lesson")
+    MainWindow.setWindowTitle("Python Application")
     MainWindow.show()
 
     sys.exit(app.exec())
