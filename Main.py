@@ -1,13 +1,18 @@
-from gui import *
+import sys
+from PyQt6.QtWidgets import QApplication, QMainWindow
+from interface import *
 
 def main():
-    window = Tk()
-    window.title('Learning Python')
-    window.geometry('600x400')
-    window.resizable(True, True)
+    app = QApplication(sys.argv)
+    MainWindow = QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.setWindowTitle("Python Lesson")
+    MainWindow.show()
 
-    Gui(window)
-    window.mainloop()
+    sys.exit(app.exec())
+
+
 
 if __name__ == '__main__':
     main()
