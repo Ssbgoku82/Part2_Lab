@@ -1,6 +1,10 @@
 from collections.abc import ItemsView
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
 
+"""
+This program was a huge project, I took this project on to challenge myself.
+It seems this type of program would take more time to perfect. 
+"""
 
 class PythonApp:
     def __init__(self,main_ui) -> None:

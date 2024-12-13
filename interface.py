@@ -73,10 +73,12 @@ class Ui_MainWindow(object):
         self.startLesson.setGeometry(QtCore.QRect(340, 550, 75, 23))
         self.startLesson.setObjectName("startLesson")
 
-        self.progressBar = QtWidgets.QProgressBar(parent=self.centralwidget)
-        self.progressBar.setGeometry(QtCore.QRect(480, 440, 118, 23))
-        self.progressBar.setProperty("value", 24)
-        self.progressBar.setObjectName("progressBar")
+#ProgressBar was not programmed and cannot use it at this time.
+
+        #self.progressBar = QtWidgets.QProgressBar(parent=self.centralwidget)
+        #self.progressBar.setGeometry(QtCore.QRect(480, 440, 118, 23))
+        #self.progressBar.setProperty("value", 24)
+        #self.progressBar.setObjectName("progressBar")
 
         self.textBrowser = QtWidgets.QTextBrowser(parent=self.centralwidget)
         self.textBrowser.setGeometry(QtCore.QRect(160, 60, 550, 200))
