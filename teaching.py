@@ -9,9 +9,19 @@ class PythonApp:
         """
 
         self.main_ui = main_ui
-        self.current_lesson = 0
-        self.current_problem = 0
-        self.hint_shown = False
+        self.current_lesson = 0 #Start of the lesson number
+        self.current_problem = 0 #Start of the problem currently
+        self.hint_shown = False #Show hint when needed
+        self.main_ui.RunCode.setEnabled(False) #Disabling the Run Code Button
+
+
+        """
+        This is the beginning of Lesson 1: Variables
+        """
+
+        self.lessons = [...]  # Lesson content
+        self.lesson_1_problems: list[dict] = [...]
+
         self.lessons = [
             "Lesson 1: Variables\n\n"
             "Creating Variables\n\n"
@@ -32,35 +42,43 @@ class PythonApp:
             "Assign 10 to 'x', 20 to 'y', and swap their values.\n\n",
 
 
-            #"Lesson 2",
-            #"Lesson 3",
+
+            #"Lesson 2", still pending development
+            #"Lesson 3", still pending development
         ]
 
+        """Lesson 1 solving problems"""
         self.lesson_1_problems = [
             {"problem": "Assign the value 10 to a variable name 'a'.", "solution": "a = 10",
              "hint": "Use the assignment operator '=' to assign a value to 'a'."},
 
         ]
 
-        self.populate_tree_view()
 
+        self.populate_tree_view() #Populates the QTreeView Widget
+
+    """Populate tree is showing which lessons are available and which lesson your on """
     def populate_tree_view(self) -> None:
-        model = QStandardItemModel()
-        self.main_ui.treeView.setModel(model)
+        model = QStandardItemModel() #model for QTree
+        self.main_ui.treeView.setModel(model) #Assign model to QTree
         for lesson in self.lessons:
-            item = QStandardItem(lesson.split(":")[0])
-            model.appendRow(item)
+            item = QStandardItem(lesson.split(":")[0]) #Extracts the lesson title
+            model.appendRow(item) #Adds the lesson title
 
 
-    def display_lesson(self, index) -> None:
-        if 0 <= index < len(self.lessons):
+    def display_lesson(self, index: int) -> None:
+        """
+        This will display the lesson content.
+        Updates the QLable to show the lesson titles.
+        """
+        if 0 <= index < len(self.lessons): #Keeps the index within bounderies
             self.main_ui.textBrowser.setPlainText(self.lessons[index])
             self.current_lesson = index
 
             lesson_title = self.lessons[index].split(":")[0]
             self.main_ui.textLabel.setText(f"{lesson_title}")
 
-    def next_lesson(self, index):
+    def next_lesson(self, index) -> None:
         if self.current_lesson < len(self.lessons) - 1:
             self.current_lesson += 1
             self.display_lesson(self.current_lesson)
@@ -70,14 +88,21 @@ class PythonApp:
             self.current_lesson -= 1
             self.display_lesson(self.current_lesson)
 
+
+    """Displays the Python problems """
+
     def display_problem(self) -> None:
-        if self.current_problem < len(self.lesson_1_problems):
-            problem_text = self.lesson_1_problems[self.current_problem]["problem"]
-            self.main_ui.textBrowser.setPlainText(problem_text)
+
+        if self.current_problem < len(self.lesson_1_problems): #Checks which problem you're on.
+            problem_text = self.lesson_1_problems[self.current_problem]["problem"] #Get the problem text
+            self.main_ui.textBrowser.setPlainText(problem_text) #Display problem
+            self.hint_shown = False
+            self.main_ui.RunCode.setEnabled(True) #enable Run/Play Button
         else:
             self.main_ui.textBrowser.setPlainText("You have completed all problems for this lesson")
+            self.main_ui.RunCode.setEnabled(False)
 
-    def check_solution(self):
+    def check_solution(self) -> str:
         if self.current_problem >= len(self.lesson_1_problems):
             self.main_ui.textBrowser.setPlainText("All problems are completed.")
             return
@@ -110,22 +135,19 @@ class PythonApp:
             else:
                 self.main_ui.textBrowser.setPlainText(f"Error: {str(e)}")
 
-    def execute_code(self) -> None:
+    def execute_code(self) -> str:
         """
         Executes the Python Code
         """
-        code = self.main_ui.textEdit.toPlainText()
+        code = self.main_ui.textEdit.toPlainText()# Gets the code from Qtext
         try:
             exec_code = {}
-            exec(code, exec_code)
+            exec(code, exec_code) #execute the code
             self.main_ui.textBrowser.setPlainText("Code executed successfully")
+            return "Code executed successfuly"
         except Exception as e:
-            self.main_ui.textBrowser.setPlainText(f"Error: {str(e)}")
-
-
-
-
-
-
+            error_msg = f"Error: {str(e)}" #Captures Errors
+            self.main_ui.textBrowser.setPlainText(error_msg)
+            return error_msg
 
 
