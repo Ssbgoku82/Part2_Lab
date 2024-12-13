@@ -4,9 +4,14 @@ from PyQt6.QtGui import QStandardItemModel, QStandardItem
 
 class PythonApp:
     def __init__(self,main_ui) -> None:
+        """
+        The beginning of the PythonApp
+        """
+
         self.main_ui = main_ui
         self.current_lesson = 0
         self.current_problem = 0
+        self.hint_shown = False
         self.lessons = [
             "Lesson 1: Variables\n\n"
             "Creating Variables\n\n"
