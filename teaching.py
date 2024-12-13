@@ -12,7 +12,7 @@ class PythonApp:
         self.current_lesson = 0 #Start of the lesson number
         self.current_problem = 0 #Start of the problem currently
         self.hint_shown = False #Show hint when needed
-        self.main_ui.RunCode.setEnabled(False) #Disabling the Run Code Button
+        self.main_ui.RunCode.setEnabled(True) #Disabling the Run Code Button, currently not working properly.
 
 
         """
@@ -69,9 +69,9 @@ class PythonApp:
     def display_lesson(self, index: int) -> None:
         """
         This will display the lesson content.
-        Updates the QLable to show the lesson titles.
+        Updates the QLabel to show the lesson titles.
         """
-        if 0 <= index < len(self.lessons): #Keeps the index within bounderies
+        if 0 <= index < len(self.lessons): #Keeps the index within boundaries
             self.main_ui.textBrowser.setPlainText(self.lessons[index])
             self.current_lesson = index
 
@@ -94,18 +94,21 @@ class PythonApp:
     def display_problem(self) -> None:
 
         if self.current_problem < len(self.lesson_1_problems): #Checks which problem you're on.
-            problem_text = self.lesson_1_problems[self.current_problem]["problem"] #Get the problem text
+            problem_text = self.lesson_1_problems[self.current_problem]["Problem"] #Get the problem text
             self.main_ui.textBrowser.setPlainText(problem_text) #Display problem
-            self.hint_shown = False
+            self.hint_shown = True
             self.main_ui.RunCode.setEnabled(True) #enable Run/Play Button
         else:
             self.main_ui.textBrowser.setPlainText("You have completed all problems for this lesson")
-            self.main_ui.RunCode.setEnabled(False)
+            self.main_ui.RunCode.setEnabled(True)
+
+    """Checks the solution entered by the user"""
 
     def check_solution(self) -> str:
         if self.current_problem >= len(self.lesson_1_problems):
             self.main_ui.textBrowser.setPlainText("All problems are completed.")
-            return
+            return "All problems are completed."
+
         user_code = self.main_ui.textBrowser.toPlainText()
         expected_solution = self.lesson_1_problems[self.current_problem]["solution"]
         hint = self.lesson_1_problems[self.current_problem]["hint"]
@@ -119,6 +122,7 @@ class PythonApp:
                 self.main_ui.textBrowser.setPlainText("Correct, move to the next problem")
                 self.current_problem += 1
                 self.display_problem()
+                return "Correct"
 
             else:
                 if not self.hint_shown:
@@ -127,6 +131,7 @@ class PythonApp:
 
                 else:
                     self.main_ui.textBrowser.setPlainText("Incorrect. Try Again")
+                return "Incorrect"
 
         except Exception as e:
             if not self.hint_shown:
@@ -134,6 +139,7 @@ class PythonApp:
                 self.hint_shown = True
             else:
                 self.main_ui.textBrowser.setPlainText(f"Error: {str(e)}")
+            return(f"Error: {str(e)}")
 
     def execute_code(self) -> str:
         """
@@ -144,7 +150,7 @@ class PythonApp:
             exec_code = {}
             exec(code, exec_code) #execute the code
             self.main_ui.textBrowser.setPlainText("Code executed successfully")
-            return "Code executed successfuly"
+            return "Code executed successfully"
         except Exception as e:
             error_msg = f"Error: {str(e)}" #Captures Errors
             self.main_ui.textBrowser.setPlainText(error_msg)
